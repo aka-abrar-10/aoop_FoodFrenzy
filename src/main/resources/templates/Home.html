@@ -1,29 +1,166 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
-	<title>FoodFrenzy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>FoodFrenzy - Order Your Favorite Food</title>
 	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-	<link rel="stylesheet" href="" th:href="@{/css/Navigation.css}" />
-	<link rel="stylesheet" href="" th:href="@{css/Home.css}" />
-	<style>
-		body{
-			background-image: url('./Images/istockphoto-1006271368-612x612.jpg'); 
-			 background-size: cover; 
-        
-    
-		}
-	</style>
+	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+	<link rel="stylesheet" href="../static/css/Home.css?v=1.0" th:href="@{/css/Home.css}" />
 </head>
 
 <body>
 	<nav th:replace="~{Navigation::navbar()}"></nav>
-	<div class="text">
-	<h1 >WELCOME TO OUR WEBSITE </h1>
-	<h3 >Where Quality Meets Innovation! <br /> Explore our wide range of products designed to enhance your life.</h3>
-	</div>
+
+	<!-- Hero Section -->
+	<section class="hero">
+		<div class="hero-content">
+			<h1>Delicious Food, Delivered Fast</h1>
+			<p>Order from your favorite restaurants and enjoy authentic flavors at your doorstep</p>
+			<div class="hero-buttons">
+				<a href="/products" class="btn btn-primary">
+					<i class="fas fa-shopping-bag"></i> Order Now
+				</a>
+				<a href="/about" class="btn btn-secondary">
+					<i class="fas fa-info-circle"></i> Learn More
+				</a>
+			</div>
+			<div class="search-box">
+				<i class="fas fa-search"></i>
+				<input type="text" placeholder="Search for dishes, restaurants, or cuisines...">
+				<button class="search-btn">Search</button>
+			</div>
+		</div>
+		<div class="hero-image">
+			<div class="floating-card card-1">
+				<i class="fas fa-pizza-slice"></i>
+				<span>Fast Delivery</span>
+			</div>
+			<div class="floating-card card-2">
+				<i class="fas fa-star"></i>
+				<span>Top Rated</span>
+			</div>
+			<div class="floating-card card-3">
+				<i class="fas fa-leaf"></i>
+				<span>Fresh Food</span>
+			</div>
+		</div>
+	</section>
+
+
+	<section class="features">
+		<div class="container">
+			<div class="feature-card">
+				<div class="feature-icon">
+					<i class="fas fa-shipping-fast"></i>
+				</div>
+				<h3>Fast Delivery</h3>
+				<p>Get your food delivered hot and fresh within 30 minutes</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">
+					<i class="fas fa-utensils"></i>
+				</div>
+				<h3>Quality Food</h3>
+				<p>Authentic flavors from the best restaurants in town</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">
+					<i class="fas fa-tags"></i>
+				</div>
+				<h3>Best Prices</h3>
+				<p>Enjoy great deals and offers on your favorite meals</p>
+			</div>
+			<div class="feature-card">
+				<div class="feature-icon">
+					<i class="fas fa-headset"></i>
+				</div>
+				<h3>24/7 Support</h3>
+				<p>We're here to help you anytime, anywhere</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Popular Categories -->
+	<section class="categories">
+		<div class="container">
+			<h2 class="section-title">Browse by Category</h2>
+			<p class="section-subtitle">Explore our wide variety of cuisines</p>
+			<div class="category-grid">
+				<div class="category-card">
+					<div class="category-icon">🍗</div>
+					<h4>Chicken</h4>
+				</div>
+				<div class="category-card">
+					<div class="category-icon">🍛</div>
+					<h4>Biryani</h4>
+				</div>
+				<div class="category-card">
+					<div class="category-icon">🥘</div>
+					<h4>Chinese</h4>
+				</div>
+				<div class="category-card">
+					<div class="category-icon">🧈🐓</div>
+					<h4>Butter Chicken
+					</h4>
+				</div>
+				<div class="category-card">
+					<div class="category-icon">🥗</div>
+					<h4>Vegetable</h4>
+				</div>
+				<div class="category-card">
+					<div class="category-icon">🍔</div>
+					<h4>Burger</h4>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Call to Action -->
+	<section class="cta">
+		<div class="container">
+			<div class="cta-content">
+				<h2>Ready to Order?</h2>
+				<p>Join thousands of happy customers enjoying delicious food delivered to their door</p>
+				<a href="Products.html" class="btn btn-large">
+					<i class="fas fa-arrow-right"></i> Browse Menu
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-content">
+				<div class="footer-section">
+					<h4>FoodFrenzy</h4>
+					<p>Your favorite food, delivered fast</p>
+				</div>
+				<div class="footer-section">
+					<h4>Quick Links</h4>
+					<ul>
+						<li><a href="Products.html">Menu</a></li>
+						<li><a href="Locate_us.html">Locations</a></li>
+						<li><a href="About.html">About Us</a></li>
+					</ul>
+				</div>
+				<div class="footer-section">
+					<h4>Follow Us</h4>
+					<div class="social-links">
+						<a href="#"><i class="fab fa-facebook"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-twitter"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; 2026 FoodFrenzy. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
 	
 </body>
 

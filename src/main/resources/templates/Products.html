@@ -4,157 +4,254 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodFrenzy</title> 
+    <title>FoodFrenzy - Our Menu</title> 
     <link rel="icon" type="image/x-icon" href="./Images/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="" th:href="@{/css/Navigation.css}" />
-    <link rel="stylesheet" href="" th:href="@{css/Products.css}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+    <link rel="stylesheet" href="../static/css/Products.css?v=1.0" th:href="@{/css/Products.css}" />
 </head>
 
 <body>
     <nav th:replace="~{Navigation::navbar()}"></nav>
+    
+    <!-- Menu Header -->
+    <div class="menu-header">
+        <div class="container">
+            <h1>Our Delicious Menu</h1>
+            <p>Explore our wide variety of authentic dishes</p>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="biryani">Biryani</button>
+                <button class="filter-btn" data-filter="chicken">Chicken</button>
+                <button class="filter-btn" data-filter="paneer">Paneer</button>
+                <button class="filter-btn" data-filter="chinese">Chinese</button>
+                <button class="filter-btn" data-filter="north-indian">North Indian</button>
+            </div>
+        </div>
+    </div>
+
     <div id="main-container">
-    <div id="biryani"> 
-        <div class="item-card">
+    <div id="biryani">
+        <div class="item-card" data-category="biryani">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
             <img src="./Images/biryani/Biryani_of_Hyderabadi.jpg" alt="Chicken Biryani">
-            <p class="item-name">Chicken Biryani</p>
-            <p class="item-price">Price: Rs 410</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <div class="card-content">
+                <p class="item-name">Chicken Biryani</p>
+                <p class="item-description">Aromatic basmati rice with tender chicken</p>
+                <p class="item-price">৳410</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>
  
- <div class="item-card">
+        <div class="item-card" data-category="paneer">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images//paneer/paneer-butter-masala.jpg" alt="Chicken Biryani">
-            <p class="item-name">Paneer Butter </p>
-            <p class="item-price">Price: Rs 290</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images//paneer/paneer-butter-masala.jpg" alt="Paneer Butter Masala">
+            <div class="card-content">
+                <p class="item-name">Paneer Butter Masala</p>
+                <p class="item-description">Creamy paneer in rich tomato gravy</p>
+                <p class="item-price">৳290</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div> 
          
-         <div class="item-card">
+        <div class="item-card" data-category="chicken">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/chicken/Afgani-chicken-curry.jpg" alt="Chicken Biryani">
-            <p class="item-name">Afgani Chicken</p>
-            <p class="item-price">Price: Rs 410</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/chicken/Afgani-chicken-curry.jpg" alt="Afgani Chicken">
+            <div class="card-content">
+                <p class="item-name">Afgani Chicken</p>
+                <p class="item-description">Succulent chicken in Afgani spices</p>
+                <p class="item-price">৳410</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div> 
         
-        <div class="item-card">
+        <div class="item-card" data-category="chicken">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 5.0
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/chicken/butter-chicken.jpg" alt="Chicken Biryani">
-            <p class="item-name">Butter Chicken</p>
-            <p class="item-price">Price: Rs 380</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/chicken/butter-chicken.jpg" alt="Butter Chicken">
+            <div class="card-content">
+                <p class="item-name">Butter Chicken</p>
+                <p class="item-description">Classic creamy butter chicken curry</p>
+                <p class="item-price">৳380</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div> 
         
-        <div class="item-card">
+        <div class="item-card" data-category="north-indian">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/north-india-food/Laccha-Paratha.jpg" alt="Chicken Biryani">
-            <p class="item-name">Laccha Paratha</p>
-            <p class="item-price">Price: Rs 30</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/north-india-food/Laccha-Paratha.jpg" alt="Laccha Paratha">
+            <div class="card-content">
+                <p class="item-name">Laccha Paratha</p>
+                <p class="item-description">Flaky layered Indian flatbread</p>
+                <p class="item-price">৳30</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div> 
         
-        <div class="item-card">
+        <div class="item-card" data-category="chicken">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 5.0
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/chicken/Matka-Chicken.jpg" alt="Chicken Biryani">
-            <p class="item-name">Matka-Chicken</p>
-            <p class="item-price">Price: Rs 510</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/chicken/Matka-Chicken.jpg" alt="Matka Chicken">
+            <div class="card-content">
+                <p class="item-name">Matka Chicken</p>
+                <p class="item-description">Traditional clay pot chicken curry</p>
+                <p class="item-price">৳510</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>
       
-      <div class="item-card">
+        <div class="item-card" data-category="chicken">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.0
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/chicken/Tandoori-chicken-tikka.jpg" alt="Chicken Biryani">
-            <p class="item-name">Chicken Tikka</p>
-            <p class="item-price">Price: Rs 310</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/chicken/Tandoori-chicken-tikka.jpg" alt="Chicken Tikka">
+            <div class="card-content">
+                <p class="item-name">Chicken Tikka</p>
+                <p class="item-description">Smoky tandoori chicken chunks</p>
+                <p class="item-price">৳310</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div> 
         
-        <div class="item-card">
+        <div class="item-card" data-category="north-indian">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/north-india-food/Honey-Chilli-Potato.jpg" alt="Chicken Biryani">
-            <p class="item-name">Chilli Potato</p>
-            <p class="item-price">Price: Rs 150</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/north-india-food/Honey-Chilli-Potato.jpg" alt="Chilli Potato">
+            <div class="card-content">
+                <p class="item-name">Chilli Potato</p>
+                <p class="item-description">Crispy potato in spicy sauce</p>
+                <p class="item-price">৳150</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>   
          
-         <div class="item-card">
+        <div class="item-card" data-category="north-indian">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/north-india-food/chola-bhatura.jpg" alt="Chicken Biryani">
-            <p class="item-name">Chola Bhatura</p>
-            <p class="item-price">Price: Rs 180</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/north-india-food/chola-bhatura.jpg" alt="Chola Bhatura">
+            <div class="card-content">
+                <p class="item-name">Chola Bhatura</p>
+                <p class="item-description">Spicy chickpeas with fried bread</p>
+                <p class="item-price">৳180</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>   
          
-         <div class="item-card">
+        <div class="item-card" data-category="north-indian">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.0</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.0
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/north-india-food/Gulab Jamun.jpg" alt="Chicken Biryani">
-            <p class="item-name">Gulab Jamun</p>
-            <p class="item-price">Price: Rs 50</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/north-india-food/Gulab Jamun.jpg" alt="Gulab Jamun">
+            <div class="card-content">
+                <p class="item-name">Gulab Jamun</p>
+                <p class="item-description">Sweet milk dumplings in syrup</p>
+                <p class="item-price">৳50</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>   
         
-        <div class="item-card">
+        <div class="item-card" data-category="chinese">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.4.5</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 4.5
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/chinese/chowmein.jpg" alt="Chicken Biryani">
-            <p class="item-name">Chowmein</p>
-            <p class="item-price">Price: Rs 150</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/chinese/chowmein.jpg" alt="Chowmein">
+            <div class="card-content">
+                <p class="item-name">Chowmein</p>
+                <p class="item-description">Stir-fried noodles with vegetables</p>
+                <p class="item-price">৳150</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>   
         
-        <div class="item-card">
+        <div class="item-card" data-category="paneer">
             <div class="card-top">
-                <i class="fa fa-star" id="rating">$.5.0</i>
-                <i class="fa fa-heart-o add-to-cart" aria-label="Add to favorites"></i>
+                <div class="rating-badge">
+                    <i class="fas fa-star"></i> 5.0
+                </div>
+                <i class="fas fa-heart add-to-cart" aria-label="Add to favorites"></i>
             </div>
-            <img src="./Images/paneer/paneer-do-pyaza.jpg" alt="Chicken Biryani">
-            <p class="item-name">Paneer Do Pyaza</p>
-            <p class="item-price">Price: Rs 270</p>
-            <a href="/login" id="buy">Buy Now</a>
+            <img src="./Images/paneer/paneer-do-pyaza.jpg" alt="Paneer Do Pyaza">
+            <div class="card-content">
+                <p class="item-name">Paneer Do Pyaza</p>
+                <p class="item-description">Paneer with double onion gravy</p>
+                <p class="item-price">৳270</p>
+                <a href="/login" class="buy-btn">
+                    <i class="fas fa-shopping-cart"></i> Order Now
+                </a>
+            </div>
         </div>  
          
     </div>
     </div>
-    <script>
-        document.getElementById("buy").addEventListener("click", function (event) {
-            event.preventDefault();
-            alert("Please Login as a User to buy Products");
-        });
-    </script>
+    
+    <script src="../static/JavaScript/Products.js" th:src="@{/JavaScript/Products.js}"></script>
 </body>
 
 </html>

@@ -2,50 +2,212 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>FoodFrenzy</title>
-	<link rel="icon" type="image/x-icon" href="./img/b.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FoodFrenzy - Login</title>
+	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-	<link rel="stylesheet" href="" th:href="@{/css/Navigation.css}" />
-	<link rel="stylesheet" href="" th:href="@{/css/Login.css}" />
+	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.login-choice-wrapper {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 3rem 1rem;
+		}
+
+		.choice-container {
+			max-width: 900px;
+			width: 100%;
+		}
+
+		.choice-header {
+			text-align: center;
+			color: white;
+			margin-bottom: 3rem;
+		}
+
+		.choice-header h1 {
+			font-size: 3rem;
+			font-weight: 800;
+			margin-bottom: 1rem;
+		}
+
+		.choice-header p {
+			font-size: 1.2rem;
+			opacity: 0.95;
+		}
+
+		.choice-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.choice-card {
+			background: white;
+			border-radius: 2rem;
+			padding: 3rem 2rem;
+			text-align: center;
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+			transition: all 0.3s ease;
+			text-decoration: none;
+			color: inherit;
+			display: block;
+		}
+
+		.choice-card:hover {
+			transform: translateY(-10px);
+			box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+		}
+
+		.choice-icon {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 2rem;
+			font-size: 3rem;
+			color: white;
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+		}
+
+		.admin-card .choice-icon {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+		}
+
+		.customer-card .choice-icon {
+			background: linear-gradient(135deg, #ff6b6b, #ff8787);
+		}
+
+		.choice-card h2 {
+			font-size: 2rem;
+			font-weight: 700;
+			margin-bottom: 0.5rem;
+			color: #2d3436;
+		}
+
+		.choice-card .badge {
+			display: inline-block;
+			padding: 0.5rem 1rem;
+			border-radius: 50px;
+			font-size: 0.875rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+			letter-spacing: 0.05em;
+		}
+
+		.admin-card .badge {
+			background: rgba(102, 126, 234, 0.1);
+			color: #667eea;
+		}
+
+		.customer-card .badge {
+			background: rgba(255, 107, 107, 0.1);
+			color: #ff6b6b;
+		}
+
+		.choice-card p {
+			color: #636e72;
+			line-height: 1.6;
+			margin-bottom: 2rem;
+		}
+
+		.choice-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+			padding: 1rem 2rem;
+			border-radius: 0.75rem;
+			font-weight: 700;
+			font-size: 1rem;
+			color: white;
+			transition: all 0.3s ease;
+		}
+
+		.admin-card .choice-btn {
+			background: linear-gradient(135deg, #667eea, #764ba2);
+			box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+		}
+
+		.customer-card .choice-btn {
+			background: linear-gradient(135deg, #ff6b6b, #ff8787);
+			box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+		}
+
+		.choice-card:hover .choice-btn {
+			transform: scale(1.05);
+		}
+
+		@media (max-width: 768px) {
+			.choice-header h1 {
+				font-size: 2rem;
+			}
+
+			.choice-header p {
+				font-size: 1rem;
+			}
+
+			.choice-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 </head>
 
 <body>
-	<nav th:replace="~{Navigation::navbar()}">
-	</nav>
-	<div class="LoginContainer">
-		<div class="admin">
-			<div class="content">
-				<strong style="font-size: 16px;margin-bottom: 0px;">BUSINESS</strong>
-				<h2>For <span style="color:green;">Admins</span></h2>
-
-				<form th:action="@{/adminLogin}" method="post">
-					<b>Email :</b>
-					<input type="email" name="email" placeholder="Enter email..." class="email"> <br />
-					<b>Password:</b>
-					<input type="password" name="password" placeholder="Enter password" class="password">
-					<small style="color: red;" th:text="${error}"></small><br />
-					<button type="submit" class="loginButton">Log in</button>
-				</form>
+	<nav th:replace="~{Navigation::navbar()}"></nav>
+	
+	<div class="login-choice-wrapper">
+		<div class="choice-container">
+			<div class="choice-header">
+				<h1>Welcome to FoodFrenzy</h1>
+				<p>Please select your login type to continue</p>
 			</div>
-		</div>
-		<div class="user">
-			<div class="content">
-				<h2> For <span style="color:green;">Users</span></h2>
-				<form th:action="@{/userLogin}" method="post" class="form">
-					<b>Email :</b>
-					<input type="email" name="userEmail" placeholder="Enter email"><br />
 
-					<b>Password:</b>
-					<input type="password" name="userPassword" placeholder="Enter password" required maxlength="8" minlength="4" class="userPassword"><br />
+			<div class="choice-grid">
+				<a href="AdminLogin.html" class="choice-card admin-card">
+					<div class="choice-icon">
+						<i class="fas fa-user-shield"></i>
+					</div>
+					<span class="badge">BUSINESS</span>
+					<h2>Admin Login</h2>
+					<p>Manage your restaurant orders, menu, and customer data</p>
+					<div class="choice-btn">
+						<i class="fas fa-sign-in-alt"></i> Login as Admin
+					</div>
+				</a>
 
-					<small style="color: red;" th:text="${error2}"></small><br />
-					<button type="submit" class="loginButton">Log in</button><br>
-
-					<p>I don't have an account? <a href="register.html" style="color: green;">Register Here</a></p>
-				</form>
+				<a href="CustomerLogin.html" class="choice-card customer-card">
+					<div class="choice-icon">
+						<i class="fas fa-user"></i>
+					</div>
+					<span class="badge">CUSTOMER</span>
+					<h2>Customer Login</h2>
+					<p>Order your favorite food and enjoy fast delivery</p>
+					<div class="choice-btn">
+						<i class="fas fa-sign-in-alt"></i> Login as Customer
+					</div>
+				</a>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>

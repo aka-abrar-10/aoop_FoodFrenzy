@@ -3,101 +3,218 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>TEA : REGISTER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoodFrenzy - Create Account</title>
+    <link rel="icon" type="image/x-icon" href="./Images/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .RegistrationContainer {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            flex: 1;
+            padding: 3rem 1rem;
         }
 
         .registration {
             background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 400px;
-            padding: 20px;
+            border-radius: 2rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            padding: 3rem 2.5rem;
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .registration-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 2rem;
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
         }
 
         .registration h2 {
             text-align: center;
-            color: #333;
+            color: #2d3436;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .registration .subtitle {
+            text-align: center;
+            color: #636e72;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
         }
 
         .registration label {
             display: block;
-            margin-bottom: 8px;
-            color: #555;
+            margin-bottom: 0.5rem;
+            color: #2d3436;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .registration label i {
+            color: #ff6b6b;
+            margin-right: 0.5rem;
         }
 
         .registration input {
             width: 100%;
-            padding: 10px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 0.75rem;
             box-sizing: border-box;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .registration input:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
         }
 
         .registration button {
-            background-color: #4caf50;
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
             color: #fff;
-            padding: 10px 15px;
+            padding: 1rem 2rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 0.75rem;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .registration button:hover {
-            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
         }
 
-        .registration p {
-            margin-top: 10px;
+        .registration .error-msg {
+            display: block;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
             text-align: center;
-            font-size: 14px;
-            color: #ff0000;
+            font-size: 0.9rem;
+            color: #d63031;
+            font-weight: 600;
+        }
+
+        .login-link {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #636e72;
+        }
+
+        .login-link a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .registration {
+                padding: 2rem 1.5rem;
+            }
+
+            .registration h2 {
+                font-size: 1.75rem;
+            }
         }
     </style>
 </head>
 
 <body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
     <div class="RegistrationContainer">
         <div class="registration">
-            <div class="content">
-                <h2>Register</h2>
+            <div class="registration-header">
+                <div class="registration-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>Create Account</h2>
+                <p class="subtitle">Join FoodFrenzy and start ordering delicious food</p>
+            </div>
 
             <form th:action="@{/register}" method="get" th:object="${userRegistration}">
-				    <label for="u_id">UserID:</label>
-                    <input type="text" id="u_id" name="u_id" th:field="*{u_id}" required><br>
-                    
-                    <label for="uemail">Email:</label>
-                    <input type="email" id="uemail" name="uemail" th:field="*{uemail}" required><br>
+                <div class="form-group">
+                    <label for="u_id"><i class="fas fa-id-card"></i> User ID</label>
+                    <input type="text" id="u_id" name="u_id" th:field="*{u_id}" placeholder="Enter your user ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="uemail"><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="uemail" name="uemail" th:field="*{uemail}" placeholder="your@email.com" required>
+                </div>
 
-                    <label for="uname">Username:</label>
-                    <input type="text" id="uname" name="uname" th:field="*{uname}" required><br>
+                <div class="form-group">
+                    <label for="uname"><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="uname" name="uname" th:field="*{uname}" placeholder="Choose a username" required>
+                </div>
 
-                    <label for="unumber">Phone Number:</label>
-                    <input type="text" id="unumber" name="unumber" th:field="*{unumber}" required><br>
+                <div class="form-group">
+                    <label for="unumber"><i class="fas fa-phone"></i> Phone Number</label>
+                    <input type="text" id="unumber" name="unumber" th:field="*{unumber}" placeholder="Enter your phone number" required>
+                </div>
 
-                    <label for="upassword">Password:</label>
-                    <input type="password" id="upassword" name="upassword" th:field="*{upassword}" required><br>
+                <div class="form-group">
+                    <label for="upassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="upassword" name="upassword" th:field="*{upassword}" placeholder="Create a strong password" required>
+                </div>
 
-                    <button type="submit">Register</button>
-                </form>
+                <small class="error-msg" th:text="${error}"></small>
 
+                <button type="submit">
+                    <i class="fas fa-user-check"></i> Create Account
+                </button>
+            </form>
 
-                <p th:text="${error}" style="color: red;"></p>
-            </div>
+            <p class="login-link">Already have an account? <a href="login.html">Login Here</a></p>
         </div>
     </div>
 </body>

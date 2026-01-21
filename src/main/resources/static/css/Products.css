@@ -1,148 +1,303 @@
-@charset "ISO-8859-1";
-body {
-    font-family: Arial, sans-serif;
-    background-color: #101010;
-    color: white;
+/* Modern Food Menu Page CSS */
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #4ecdc4;
+    --dark-color: #2d3436;
+    --light-color: #ffffff;
+    --gray-color: #636e72;
+    --bg-light: #f8f9fa;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+}
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-light);
+    padding-bottom: 3rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Menu Header */
+.menu-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 3rem 0 2rem;
+    text-align: center;
+    color: var(--light-color);
+}
+
+.menu-header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.menu-header p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--light-color);
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.filter-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 #main-container {
-    display: flex;
-    justify-content: center; /* Center the grid in the container */
-    align-items: flex-start;
-    overflow-y: auto; /* Enable vertical scroll */
-    height: 80vh; /* Set a height limit to trigger vertical scroll */
-    padding: 20px;
-}
-
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #444; /* Dark scrollbar handle */
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #666; /* Lighter color on hover */
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 0 2rem;
 }
 
 #biryani {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Responsive grid */
-    grid-gap: 20px; /* Gap between items */
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #2C2C2C;
-    border-radius: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
-#category-name {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #FFAA00;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
+/* Item Card */
 .item-card {
-    background-color: #333;
-    padding: 15px;
-    border-radius: 8px;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
+    background: var(--light-color);
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
 }
 
 .card-top {
+    position: absolute;
+    top: 1rem;
+    width: 100%;
+    padding: 0 1rem;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    z-index: 10;
 }
 
-#rating {
-    padding: 7px;
-    color: gold;
-    background: #1c1c1c;
-    font-size: 14px;
-    border-radius: 12px;
+.rating-badge {
+    background: rgba(251, 191, 36, 0.95);
+    color: var(--light-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    box-shadow: var(--shadow-sm);
 }
 
-.fa-heart-o {
-    padding: 6px;
-    background-color: #555;
+.rating-badge i {
+    font-size: 0.8rem;
+}
+
+.add-to-cart {
+    background: var(--light-color);
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    font-size: 1.1rem;
+    color: var(--gray-color);
 }
 
-.fa-heart-o:hover {
-    background-color: crimson;
-}
-
-.item-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin: 10px auto;
-    display: block;
-    transition: transform 0.3s ease;
-}
-
-.item-card img:hover {
+.add-to-cart:hover {
+    background: var(--primary-color);
+    color: var(--light-color);
     transform: scale(1.1);
 }
 
+.item-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .item-name {
-    margin: 5px 0;
-    font-weight: 600;
-    color: #ddd;
-    font-size: 1.1rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin: 0 0 0.5rem 0;
+}
+
+.item-description {
+    font-size: 0.95rem;
+    color: var(--gray-color);
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
 }
 
 .item-price {
-    color: #ccc;
-    font-size: 1rem;
-    margin-bottom: 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin: 0 0 1rem 0;
 }
 
-#buy {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: crimson;
-    color: white;
+.buy-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: var(--light-color);
+    padding: 1rem;
+    border-radius: 0.75rem;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: var(--transition);
+    margin-top: auto;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.buy-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.buy-btn i {
+    font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    .menu-header h1 {
+        font-size: 2.5rem;
+    }
+
+    #main-container {
+        padding: 0 1rem;
+    }
+    
+    #biryani {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-header h1 {
+        font-size: 2rem;
+    }
+
+    .filter-buttons {
+        gap: 0.5rem;
+    }
+
+    .filter-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    #biryani {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1rem;
+    }
+
+    .item-card img {
+        height: 220px;
+    }
+}
+
+    text-align: center;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 #buy:hover {
-    background-color: #218838;
+    background: var(--primary-dark);
+    transform: translateY(-2px);
 }
 
-/* Media Queries for Responsive Design */
-@media screen and (max-width: 768px) {
+/* Category Headers */
+h2.category-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 3rem 0 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+    display: inline-block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #main-container {
+        padding: 0 1rem;
+    }
+    
     #biryani {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        grid-gap: 15px;
-    }
-
-    .item-card {
-        padding: 10px;
-    }
-
-    #category-name {
-        font-size: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
     }
 }
-

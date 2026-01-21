@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FoodFrenzy - Customer Login</title>
+	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+			min-height: 100vh;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.login-wrapper {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 2rem 1rem;
+		}
+
+		.login-container {
+			background: white;
+			border-radius: 2rem;
+			box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+			width: 100%;
+			max-width: 450px;
+			padding: 3rem 2.5rem;
+		}
+
+		.login-header {
+			text-align: center;
+			margin-bottom: 2rem;
+		}
+
+		.login-icon {
+			width: 80px;
+			height: 80px;
+			background: linear-gradient(135deg, #ff6b6b, #ff8787);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 1.5rem;
+			font-size: 2.5rem;
+			color: white;
+			box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+		}
+
+		.login-header h2 {
+			font-size: 2rem;
+			font-weight: 700;
+			color: #2d3436;
+			margin-bottom: 0.5rem;
+		}
+
+		.login-header h2 span {
+			color: #ff6b6b;
+		}
+
+		.subtitle {
+			font-size: 0.95rem;
+			color: #636e72;
+			margin-bottom: 2rem;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+
+		.form-group {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+		}
+
+		.form-group label {
+			display: block;
+			font-size: 0.9rem;
+			font-weight: 600;
+			color: #2d3436;
+		}
+
+		.form-group label i {
+			margin-right: 0.5rem;
+			color: #ff6b6b;
+		}
+
+		input[type="email"],
+		input[type="password"] {
+			width: 100%;
+			padding: 1rem;
+			border: 2px solid #e5e7eb;
+			border-radius: 0.75rem;
+			font-size: 1rem;
+			transition: all 0.3s ease;
+			background: #f8f9fa;
+		}
+
+		input:focus {
+			outline: none;
+			border-color: #ff6b6b;
+			box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+		}
+
+		.error-msg {
+			display: block;
+			color: #d63031;
+			font-size: 0.875rem;
+			font-weight: 600;
+			text-align: center;
+			margin: -0.5rem 0;
+		}
+
+		.login-button {
+			background: linear-gradient(135deg, #ff6b6b, #ff8787);
+			color: white;
+			padding: 1rem 2rem;
+			border: none;
+			border-radius: 0.75rem;
+			font-size: 1rem;
+			font-weight: 700;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 0.5rem;
+		}
+
+		.login-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+		}
+
+		.login-links {
+			text-align: center;
+			margin-top: 1.5rem;
+			padding-top: 1.5rem;
+			border-top: 1px solid #e5e7eb;
+		}
+
+		.login-links p {
+			color: #636e72;
+			font-size: 0.95rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.login-links a {
+			color: #ff6b6b;
+			text-decoration: none;
+			font-weight: 700;
+		}
+
+		.login-links a:hover {
+			text-decoration: underline;
+		}
+
+		@media (max-width: 768px) {
+			.login-container {
+				padding: 2rem 1.5rem;
+			}
+
+			.login-header h2 {
+				font-size: 1.75rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav th:replace="~{Navigation::navbar()}"></nav>
+	
+	<div class="login-wrapper">
+		<div class="login-container">
+			<div class="login-header">
+				<div class="login-icon">
+					<i class="fas fa-user"></i>
+				</div>
+				<h2>Customer <span>Login</span></h2>
+				<p class="subtitle">Order your favorite food delivered fast</p>
+			</div>
+
+			<form th:action="@{/userLogin}" method="post">
+				<div class="form-group">
+					<label><i class="fas fa-envelope"></i> Email</label>
+					<input type="email" name="userEmail" placeholder="your@email.com" required>
+				</div>
+				<div class="form-group">
+					<label><i class="fas fa-lock"></i> Password</label>
+					<input type="password" name="userPassword" placeholder="Enter your password" required maxlength="8" minlength="4">
+				</div>
+				<small class="error-msg" th:text="${error2}"></small>
+				<button type="submit" class="login-button">
+					<i class="fas fa-sign-in-alt"></i> Login as Customer
+				</button>
+			</form>
+
+			<div class="login-links">
+				<p>Don't have an account? <a href="register.html">Register Here</a></p>
+				<p>Are you an admin? <a href="AdminLogin.html">Admin Login</a></p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

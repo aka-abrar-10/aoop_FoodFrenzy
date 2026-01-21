@@ -1,74 +1,197 @@
-@charset "ISO-8859-1";
-
+/* Modern Admin Dashboard CSS */
 body {
-	background-color: rgb(48, 47, 47);
-	background-size: inherit;
-	background-repeat: round;
-}
-
-div {
-	background-color: rgb(0, 0, 0);
-	margin-top: 10px;
-	padding-bottom: 20px;
-	padding-top: 20px;
-
-
-}
-
-table {
-	width: 700px;
-	padding: 5px;
-	border: none;
-	box-shadow: 5px 5px 10px green;
-	margin-bottom: 40px;
-}
-
-
-td {
-
-	padding: 10px;
-	font-size: 18px;
-	font-weight: bold;
-	color:antiquewhite;
-}
-
-th {
-	padding: 12px;
-	background-color: green;
-	color:black;
-}
-
-h2 {
-	color: antiquewhite;
-	padding: 20px;
-
-}
-
-.btns {
-
-	border: 1px green solid;
-	padding: 8px;
-	background-color: black;
-	text-decoration: none;
-	font-family: sans-serif;
-	font-weight: bold;
-	color: white;
-
-}
-
-.btns:hover {
-	background-color: green;
-	transition: 1.3s;
+    background: var(--bg-light);
+    min-height: 100vh;
+    padding: 2rem;
 }
 
 .back {
-		width: max-content;
-	color: white;
-	text-decoration: none;
-	border: 1px black solid;
-	padding: 10px;
-	background-color: darkslategray;
-	
-	position: fixed;
-	
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    margin-bottom: 2rem;
+}
+
+.back::before {
+    content: "←";
+    font-size: 1.2rem;
+}
+
+.back:hover {
+    background: var(--primary-dark);
+    transform: translateX(-4px);
+}
+
+.tables {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.admins,
+.users,
+.products,
+.orders {
+    background: var(--white);
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: var(--shadow-md);
+}
+
+h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+thead {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: var(--white);
+}
+
+th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+th:first-child {
+    border-top-left-radius: 0.5rem;
+}
+
+th:last-child {
+    border-top-right-radius: 0.5rem;
+}
+
+tbody tr {
+    transition: var(--transition);
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tbody tr:hover {
+    background: var(--bg-light);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+td {
+    padding: 1rem;
+    color: var(--text-dark);
+}
+
+/* Action Icons */
+td a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 0.5rem;
+    margin-right: 0.5rem;
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+td a:hover {
+    transform: translateY(-2px);
+}
+
+/* Edit Icon */
+td a[href*="update"],
+td a[href*="Update"] {
+    background: #3b82f6;
+    color: var(--white);
+}
+
+td a[href*="update"]:hover,
+td a[href*="Update"]:hover {
+    background: #2563eb;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Delete Icon */
+td a[href*="delete"],
+td a[href*="Delete"] {
+    background: #ef4444;
+    color: var(--white);
+}
+
+td a[href*="delete"]:hover,
+td a[href*="Delete"]:hover {
+    background: #dc2626;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Add Links */
+a[href*="Add"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    margin-top: 1rem;
+}
+
+a[href*="Add"]::before {
+    content: "+";
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+a[href*="Add"]:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .admins,
+    .users,
+    .products,
+    .orders {
+        padding: 1.5rem 1rem;
+        overflow-x: auto;
+    }
+    
+    table {
+        min-width: 600px;
+    }
+    
+    th,
+    td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.875rem;
+    }
 }

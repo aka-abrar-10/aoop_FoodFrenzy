@@ -1,112 +1,105 @@
-@charset "ISO-8859-1";
+/* Modern Navigation CSS */
+:root {
+    --primary-color: #10b981;
+    --primary-dark: #059669;
+    --secondary-color: #6366f1;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f9fafb;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
 
-/* Global Styles */
-body, ul {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: var(--bg-light);
+}
+
 nav {
-    background: #333;
-    color: white;
+    background: var(--white);
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow-md);
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
 }
 
-/* Logo */
-.logo {
+nav .logo {
     height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    margin-right: 20px;
-    transition: transform 0.3s;
+    width: auto;
+    transition: var(--transition);
 }
 
-.Owner_Logo:hover {
-    transform: scale(1.1);
-}
-
-/* Navigation Links */
-ul {
-    list-style-type: none;
-    display: flex;
-    flex: 1;
-    justify-content: space-around;
-}
-
-li {
-    margin: 0;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    position: relative;
-    transition: color 0.3s, transform 0.3s;
-}
-
-a:hover {
-    color: crimson; /* Crimson hover color */
+nav .logo:hover {
     transform: scale(1.05);
 }
 
-a::after {
-    content: '';
-    display: block;
-    height: 2px;
-    width: 0;
-    background: crimson; /* Crimson underline */
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    transition: width 0.3s;
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
 }
 
-a:hover::after {
-    width: 100%;
+nav ul li {
+    position: relative;
 }
 
-/* Button Style */
-button {
-    color: crimson;
-    border: none;
-    background-color: transparent;
-    font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s;
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: var(--transition);
+    display: inline-block;
 }
 
-button:hover {
-    color: #c70039; /* Darker crimson shade */
+nav ul li a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+nav ul li a i {
+    margin-left: 0.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     nav {
         flex-direction: column;
-        align-items: flex-start;
+        padding: 1rem;
     }
-
-    ul {
+    
+    nav ul {
         flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
         width: 100%;
     }
-
-    li {
-        margin: 10px 0;
+    
+    nav ul li {
+        width: 100%;
     }
-
-    .Owner_Logo {
-        margin: 0;
+    
+    nav ul li a {
+        width: 100%;
+        text-align: center;
     }
 }
-
-

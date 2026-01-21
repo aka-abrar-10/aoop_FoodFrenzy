@@ -1,133 +1,136 @@
 <!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.com">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Buy Product </title>
-	<link rel="stylesheet" href="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>FoodFrenzy - Buy Product</title>
+	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+	<link rel="stylesheet" href="../static/css/BuyProduct.css?v=1.0" th:href="@{/css/BuyProduct.css}"/>
 </head>
-<style>
-	body {
-		background-image: url("https://images.pexels.com/photos/7219747/pexels-photo-7219747.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-		 background-size: cover; 
-	}
-
-	* {
-		font-size: 16px;
-		font-family: sans-serif;
-	}
-
-	.searchInput {
-		margin-top: 30px;
-	}
-
-	.searchInput input {
-		padding: 15px;
-		width: 270px;
-	}
-
-	.searchInput button {
-		padding: 15px;
-		width: 100px;
-		background-color: red;
-	}
-
-	.details {
-		margin-top: 70px;
-	}
-
-	.details input,
-	.details button {
-		display: block;
-		padding: 5px;
-		font-size: 16px;
-		
-
-	}
-
-	a {
-		border: 1px solid black;
-		background-color: darkgoldenrod;
-		color: black;
-		text-decoration: none;
-		padding: 7px;
-		width: 50px;
-		position: fixed;
-	}
-	.details th{
-		background-color: dimgray;
-		font-family: sans-serif;
-		padding: 10px;
-		border: none;
-	
-	}
-	td{
-		text-align: center;
-		border-bottom: 1px solid lightslategrey;
-	}
-	.welcome marquee,.welcome span
-	{
-		
-		width: 50%;
-		font-size: 20px;
-		font-family: sans-serif;
-		color: lavender;
-	}
-	
-</style>
 
 <body>
-	<div class="welcome">
-			<marquee direction="right"  behaviour="slide" 
-			scrollamount="15" loop="1">Welcome Back <span  th:text="${name}"></span>
-			</marquee><br />
+	<nav th:replace="~{Navigation::navbar()}"></nav>
+
+	<!-- Welcome Banner -->
+	<div class="welcome-banner">
+		<div class="container">
+			<div class="welcome-content">
+				<i class="fas fa-user-circle"></i>
+				<span>Welcome Back, <strong th:text="${name}">Guest</strong>!</span>
+			</div>
+			<a href="login.html" class="back-btn">
+				<i class="fas fa-arrow-left"></i> Back
+			</a>
+		</div>
 	</div>
-	
-	<a href="/login">Back</a>
-	<center>
 
-		<form action="" th:action="@{/product/search}" method="post" class="searchInput">
-			<h1>Product Search :</h1>
-			<input type="text" name="productName" required placeholder="Please enter the Product Name....">
-			<button type="submit">SEARCH</button><br />
-			<smal style="color: red;" th:text="${message}"> </smal>
-		</form>
-		
-		<div th:if="${product!=null}" class="details">
-			<form action="" th:action="@{/product/order}" th:object="${product}" method="post">
-				ProductName :
-				<input type="text" value="" name="oName" th:value="${product.pname}" readonly /><br />
-				Product Price :
-				<input type="text" value="" name="oPrice" th:value="${product.pprice}" readonly /><br />
-				Quqntity :
-				<input type="number" placeholder="Minimun: 1KG" min="1" name="oQuantity" /><br />
+	<!-- Main Content -->
+	<div class="main-container">
+		<div class="container">
+			
+			<!-- Search Section -->
+			<div class="search-section">
+				<div class="search-card">
+					<div class="search-header">
+						<i class="fas fa-search"></i>
+						<h2>Find Your Favorite Food</h2>
+						<p>Search for products and place your order</p>
+					</div>
+					<form action="" th:action="@{/product/search}" method="post" class="search-form">
+						<div class="search-input-group">
+							<i class="fas fa-utensils input-icon"></i>
+							<input type="text" name="productName" required placeholder="Enter product name (e.g., Biryani, Paneer)">
+							<button type="submit" class="search-btn">
+								<i class="fas fa-search"></i> Search
+							</button>
+						</div>
+						<small class="error-message" th:text="${message}"></small>
+					</form>
+				</div>
+			</div>
 
-				<button type="submit">Order_Now</button>
-			</form>
+			<!-- Product Details Section -->
+			<div th:if="${product!=null}" class="product-section">
+				<div class="product-card">
+					<div class="product-header">
+						<i class="fas fa-shopping-bag"></i>
+						<h3>Product Details</h3>
+					</div>
+					<form action="" th:action="@{/product/order}" th:object="${product}" method="post" class="order-form">
+						<div class="form-group">
+							<label for="productName">
+								<i class="fas fa-tag"></i> Product Name
+							</label>
+							<input type="text" id="productName" value="" name="oName" th:value="${product.pname}" readonly class="form-input" />
+						</div>
+						
+						<div class="form-group">
+							<label for="productPrice">
+								<i class="fas fa-dollar-sign"></i> Product Price
+							</label>
+							<input type="text" id="productPrice" value="" name="oPrice" th:value="${product.pprice}" readonly class="form-input" />
+						</div>
+						
+						<div class="form-group">
+							<label for="quantity">
+								<i class="fas fa-weight"></i> Quantity (Minimum: 1 KG)
+							</label>
+							<input type="number" id="quantity" placeholder="Enter quantity" min="1" name="oQuantity" required class="form-input" />
+						</div>
+
+						<button type="submit" class="order-btn">
+							<i class="fas fa-check-circle"></i> Place Order Now
+						</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- Orders History Section -->
+			<div th:if="${orders!=null}" class="orders-section">
+				<div class="orders-card">
+					<div class="orders-header">
+						<i class="fas fa-receipt"></i>
+						<h3>Your Order History</h3>
+						<p>Track all your previous orders</p>
+					</div>
+					<div class="table-responsive">
+						<table class="orders-table">
+							<thead>
+								<tr>
+									<th><i class="fas fa-box"></i> Product Name</th>
+									<th><i class="fas fa-dollar-sign"></i> Price</th>
+									<th><i class="fas fa-balance-scale"></i> Quantity</th>
+									<th><i class="fas fa-money-bill-wave"></i> Total Amount</th>
+									<th><i class="fas fa-calendar"></i> Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="order :${orders}" class="order-row">
+									<td th:text="${order.oName}">Biryani</td>
+									<td th:text="${order.oPrice}">৳250</td>
+									<td th:text="${order.oQuantity}">2</td>
+									<td class="amount" th:text="${order.totalAmmout}">৳500</td>
+									<td th:text="${order.orderDate}">2024-01-15</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
 		</div>
-		
-		<div th:if="${orders!=null}" class="details">
-			<h2>Your Orders :</h2>
-			<table >
-				<tr>
-	
-					<th>Product_Name</th>
-					<th>Product_Price</th>
-					<th>Product_Quantity</th>
-					<th>Total_Ammount</th>
-					<th>Date</th>
-				</tr>
-				<tr th:each="order :${orders}">
-					<td th:text="${order.oName}"></td>
-					<td th:text="${order.oPrice}"></td>
-					<td th:text="${order.oQuantity}"></td>
-					<td th:text="${order.totalAmmout}"></td>
-					<td th:text="${order.orderDate}"></td>
+	</div>
 
-				</tr>
-			</table>
+	<!-- Footer -->
+	<footer class="page-footer">
+		<div class="container">
+			<p>&copy; 2026 FoodFrenzy. All rights reserved.</p>
 		</div>
-	</center>
+	</footer>
+
 </body>
 
 </html>
