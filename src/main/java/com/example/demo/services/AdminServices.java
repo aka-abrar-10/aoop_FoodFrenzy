@@ -4,56 +4,47 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.entities.*;
 import com.example.demo.repositories.*;
 
-@Component
-public class AdminServices
-{
+@Service
+@Transactional
+public class AdminServices {
 	@Autowired
 	private AdminRepository adminRepository;
-	
 
-	public List<Admin>getAll()
-	{
-		 List<Admin> admins = (List<Admin>)this.adminRepository.findAll();
-		 return admins;
+	public List<Admin> getAll() {
+		List<Admin> admins = (List<Admin>) this.adminRepository.findAll();
+		return admins;
 	}
 
-	public Admin getAdmin(int id)
-	{
+	public Admin getAdmin(int id) {
 		Optional<Admin> optional = this.adminRepository.findById(id);
-		Admin admin=optional.get();
+		Admin admin = optional.get();
 		return admin;
 	}
 
-	public void update(Admin admin ,int id)
-	{
-		for (Admin ad : getAll()) 
-		{
-			if(ad.getAdminId()==id)
-			{
+	public void update(Admin admin, int id) {
+		for (Admin ad : getAll()) {
+			if (ad.getAdminId() == id) {
 				this.adminRepository.save(admin);
 			}
 		}
 	}
-	
-	public void delete(int id)
-	{
+
+	public void delete(int id) {
 		this.adminRepository.deleteById(id);
 	}
 
-	public void addAdmin(Admin admin)
-	{
+	public void addAdmin(Admin admin) {
 		this.adminRepository.save(admin);
 	}
 
-	public boolean validateAdminCredentials(String email,String password)
-	{
-		Admin admin=adminRepository.findByAdminEmail(email);
-		if(admin!=null && admin.getAdminPassword().equals(password))
-		{
+	public boolean validateAdminCredentials(String email, String password) {
+		Admin admin = adminRepository.findByAdminEmail(email);
+		if (admin != null && admin.getAdminPassword().equals(password)) {
 			return true;
 		}
 		return false;
