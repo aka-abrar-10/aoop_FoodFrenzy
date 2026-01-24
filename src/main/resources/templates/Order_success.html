@@ -1,47 +1,198 @@
 <!doctype html>
-<html lang="en" xmnls:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8" />
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>FoodFrenzy - Order Successful</title>
+	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			min-height: 100vh;
+		}
+
+		.success-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: calc(100vh - 80px);
+			padding: 2rem;
+		}
+
+		.success-card {
+			background: white;
+			border-radius: 1.5rem;
+			padding: 3rem;
+			text-align: center;
+			box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+			max-width: 500px;
+			width: 100%;
+			animation: slideUp 0.5s ease-out;
+		}
+
+		@keyframes slideUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.success-icon {
+			width: 100px;
+			height: 100px;
+			background: linear-gradient(135deg, #10b981, #059669);
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 1.5rem;
+			animation: pulse 2s infinite;
+		}
+
+		@keyframes pulse {
+
+			0%,
+			100% {
+				box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+			}
+
+			50% {
+				box-shadow: 0 0 0 20px rgba(16, 185, 129, 0);
+			}
+		}
+
+		.success-icon i {
+			font-size: 3rem;
+			color: white;
+		}
+
+		h1 {
+			color: #1f2937;
+			font-size: 1.75rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.subtitle {
+			color: #6b7280;
+			margin-bottom: 2rem;
+		}
+
+		.amount-box {
+			background: linear-gradient(135deg, #fef3c7, #fde68a);
+			border-radius: 1rem;
+			padding: 1.5rem;
+			margin-bottom: 2rem;
+		}
+
+		.amount-label {
+			color: #92400e;
+			font-size: 0.9rem;
+			margin-bottom: 0.5rem;
+		}
+
+		.amount-value {
+			font-size: 2.5rem;
+			font-weight: 700;
+			color: #78350f;
+		}
+
+		.btn-group {
+			display: flex;
+			gap: 1rem;
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+
+		.btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.875rem 1.5rem;
+			border-radius: 0.75rem;
+			font-weight: 600;
+			text-decoration: none;
+			transition: all 0.3s ease;
+		}
+
+		.btn-primary {
+			background: linear-gradient(135deg, #10b981, #059669);
+			color: white;
+		}
+
+		.btn-primary:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 10px 20px -10px rgba(16, 185, 129, 0.5);
+		}
+
+		.btn-secondary {
+			background: #f3f4f6;
+			color: #374151;
+		}
+
+		.btn-secondary:hover {
+			background: #e5e7eb;
+			transform: translateY(-2px);
+		}
+
+		.order-details {
+			margin-top: 2rem;
+			padding-top: 2rem;
+			border-top: 1px solid #e5e7eb;
+		}
+
+		.order-details p {
+			color: #6b7280;
+			font-size: 0.9rem;
+		}
+	</style>
 </head>
-<style>
-	body{
-		background-color:navajowhite;
-		font-family: cursive;
-		font-size: 30px;
-		
-	}
-	.text{
-		position: relative;
-		left: 250px;
-		top: 200px;
-		text-align: center;
-		height: max-content;
-		width: max-content;
-	}
-	span,h4
-	{
-		color: green;
-	}
-	a{
-		border: 1px solid black;
-		text-decoration: none;
-		background-color: darkgreen;
-		color: aliceblue;
-		font-family: sans-serif;
-		padding: 5px;
-	}
-	
-</style>
 
 <body>
-		<a href="/product/back" >Back</a>
-	<div class="text">
-		<h4>Ordered SuccessFully... !!!</h4>
-		<h3 style="font-family: sans-serif;">Your purchased amount is : <span th:text="'₹ '+${amount}+'/-'"></span></h3>
-	</div>
+	<nav th:replace="~{Navigation::navbar()}"></nav>
 
+	<div class="success-container">
+		<div class="success-card">
+			<div class="success-icon">
+				<i class="fas fa-check"></i>
+			</div>
+
+			<h1>Order Placed Successfully!</h1>
+			<p class="subtitle">Thank you for your order. Your food is being prepared.</p>
+
+			<div class="amount-box">
+				<p class="amount-label">Total Amount Paid</p>
+				<p class="amount-value">৳<span th:text="${amount}">0</span></p>
+			</div>
+
+			<div class="btn-group">
+				<a th:href="@{/product/back}" class="btn btn-primary">
+					<i class="fas fa-utensils"></i> Order More
+				</a>
+				<a th:href="@{/products}" class="btn btn-secondary">
+					<i class="fas fa-home"></i> Browse Menu
+				</a>
+			</div>
+
+			<div class="order-details">
+				<p><i class="fas fa-clock"></i> Estimated delivery: 30-45 minutes</p>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

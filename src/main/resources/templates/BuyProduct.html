@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/x-icon" href="./Images/logo.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 	<link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
-	<link rel="stylesheet" href="../static/css/BuyProduct.css?v=1.0" th:href="@{/css/BuyProduct.css}"/>
+	<link rel="stylesheet" href="../static/css/BuyProduct.css?v=1.0" th:href="@{/css/BuyProduct.css}" />
 </head>
 
 <body>
@@ -30,7 +30,7 @@
 	<!-- Main Content -->
 	<div class="main-container">
 		<div class="container">
-			
+
 			<!-- Search Section -->
 			<div class="search-section">
 				<div class="search-card">
@@ -42,7 +42,8 @@
 					<form action="" th:action="@{/product/search}" method="post" class="search-form">
 						<div class="search-input-group">
 							<i class="fas fa-utensils input-icon"></i>
-							<input type="text" name="productName" required placeholder="Enter product name (e.g., Biryani, Paneer)">
+							<input type="text" name="productName" required
+								placeholder="Enter product name (e.g., Biryani, Paneer)">
 							<button type="submit" class="search-btn">
 								<i class="fas fa-search"></i> Search
 							</button>
@@ -59,26 +60,29 @@
 						<i class="fas fa-shopping-bag"></i>
 						<h3>Product Details</h3>
 					</div>
-					<form action="" th:action="@{/product/order}" th:object="${product}" method="post" class="order-form">
+					<form th:action="@{/product/order}" method="post" class="order-form">
 						<div class="form-group">
 							<label for="productName">
 								<i class="fas fa-tag"></i> Product Name
 							</label>
-							<input type="text" id="productName" value="" name="oName" th:value="${product.pname}" readonly class="form-input" />
+							<input type="text" id="productName" value="" name="oName" th:value="${product.pname}"
+								readonly class="form-input" />
 						</div>
-						
+
 						<div class="form-group">
 							<label for="productPrice">
 								<i class="fas fa-dollar-sign"></i> Product Price
 							</label>
-							<input type="text" id="productPrice" value="" name="oPrice" th:value="${product.pprice}" readonly class="form-input" />
+							<input type="text" id="productPrice" value="" name="oPrice" th:value="${product.pprice}"
+								readonly class="form-input" />
 						</div>
-						
+
 						<div class="form-group">
 							<label for="quantity">
 								<i class="fas fa-weight"></i> Quantity (Minimum: 1 KG)
 							</label>
-							<input type="number" id="quantity" placeholder="Enter quantity" min="1" name="oQuantity" required class="form-input" />
+							<input type="number" id="quantity" placeholder="Enter quantity" min="1" name="oQuantity"
+								required class="form-input" />
 						</div>
 
 						<button type="submit" class="order-btn">

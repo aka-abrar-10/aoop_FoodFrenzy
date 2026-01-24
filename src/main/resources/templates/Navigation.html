@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home : Pavan Tea</title>
+    <title>Home : FoodFrenzy</title>
     <link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}">
     <link rel="stylesheet" href="../static/css/Home.css?v=1.0" th:href="@{/css/Home.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
+
 <body>
     <nav th:fragment="navbar()">
         <img th:src="@{/Images/logo.png}" alt="Logo" class="logo">
@@ -16,10 +18,17 @@
             <li><a href="/products">Products</a></li>
             <li><a href="/location">Locate Us</a></li>
             <li><a href="/about">About Us</a></li>
-            <li><a href="/login">Login <i class="fas fa-sign-in-alt"></i></a></li>
+            <!-- Show user info and logout when logged in -->
+            <li th:if="${name != null}" class="user-logged-in">
+                <span class="user-name"><i class="fas fa-user-circle"></i> <span th:text="${name}">User</span></span>
+            </li>
+            <li th:if="${name != null}">
+                <a href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+            <!-- Show login when not logged in -->
+            <li th:if="${name == null}"><a href="/login">Login <i class="fas fa-sign-in-alt"></i></a></li>
         </ul>
     </nav>
 </body>
+
 </html>
-
-
