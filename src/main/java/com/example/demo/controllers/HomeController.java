@@ -14,6 +14,7 @@ import com.example.demo.entities.User;
 import com.example.demo.loginCredentials.AdminLogin;
 import com.example.demo.services.ProductServices;
 import com.example.demo.services.UserServices;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -24,30 +25,52 @@ public class HomeController {
 	private UserServices userServices;
 
 	@GetMapping(value = { "/home", "/" })
-	public String home() {
+	public String home(Model model, HttpSession session) {
+		// Get user name from session if logged in
+		String userName = (String) session.getAttribute("userName");
+		if (userName != null) {
+			model.addAttribute("name", userName);
+		}
 		return "Home";
 	}
 
 	@GetMapping("/products")
-	public String products(Model model) {
+	public String products(Model model, HttpSession session) {
 		List<Product> allProducts = this.productServices.getAllProducts();
 		model.addAttribute("products", allProducts);
+		// Get user name from session if logged in
+		String userName = (String) session.getAttribute("userName");
+		if (userName != null) {
+			model.addAttribute("name", userName);
+		}
 		return "Products";
 	}
 
 	@GetMapping("/location")
-	public String location() {
+	public String location(Model model, HttpSession session) {
+		String userName = (String) session.getAttribute("userName");
+		if (userName != null) {
+			model.addAttribute("name", userName);
+		}
 		return "Locate_us";
 	}
 
 	@GetMapping("/about")
-	public String about() {
+	public String about(Model model, HttpSession session) {
+		String userName = (String) session.getAttribute("userName");
+		if (userName != null) {
+			model.addAttribute("name", userName);
+		}
 		return "About";
 	}
 
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(Model model, HttpSession session) {
 		model.addAttribute("adminLogin", new AdminLogin());
+		String userName = (String) session.getAttribute("userName");
+		if (userName != null) {
+			model.addAttribute("name", userName);
+		}
 		return "Login";
 	}
 
@@ -93,7 +116,9 @@ public class HomeController {
 
 	// Logout - clear session and redirect to home
 	@GetMapping("/logout")
-	public String logout() {
+	public String logout(HttpSession session) {
+		// Clear all session attributes
+		session.invalidate();
 		return "redirect:/home";
 	}
 }

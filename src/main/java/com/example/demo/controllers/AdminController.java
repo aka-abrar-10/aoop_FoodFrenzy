@@ -19,6 +19,7 @@ import com.example.demo.count.*;
 import com.example.demo.entities.*;
 import com.example.demo.loginCredentials.*;
 import com.example.demo.services.*;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 @Controller
@@ -32,14 +33,12 @@ public class AdminController {
 	@Autowired
 	private OrderServices orderServices;
 
-	private String email;
-	private User user;
-
 	@PostMapping("/adminLogin")
-	public String getAllData(@ModelAttribute("adminLogin") AdminLogin login, Model model) {
+	public String getAllData(@ModelAttribute("adminLogin") AdminLogin login, Model model, HttpSession session) {
 		String email = login.getEmail();
 		String password = login.getPassword();
 		if (adminServices.validateAdminCredentials(email, password)) {
+			session.setAttribute("adminLoggedIn", true);
 			return "redirect:/admin/services";
 		} else {
 			model.addAttribute("error", "Invalid email or password");
@@ -49,12 +48,16 @@ public class AdminController {
 	}
 
 	@PostMapping("/userLogin")
-	public String userLogin(@ModelAttribute("userLogin") UserLogin login, Model model) {
+	public String userLogin(@ModelAttribute("userLogin") UserLogin login, Model model, HttpSession session) {
 
-		email = login.getUserEmail();
+		String email = login.getUserEmail();
 		String password = login.getUserPassword();
 		if (services.validateLoginCredentials(email, password)) {
-			user = this.services.getUserByEmail(email);
+			User user = this.services.getUserByEmail(email);
+			// Store user in session
+			session.setAttribute("loggedInUser", user);
+			session.setAttribute("userName", user.getUname());
+
 			List<Orders> orders = this.orderServices.getOrdersForUser(user);
 			model.addAttribute("orders", orders);
 			model.addAttribute("name", user.getUname());
@@ -67,7 +70,11 @@ public class AdminController {
 	}
 
 	@PostMapping("/product/search")
-	public String seachHandler(@RequestParam("productName") String name, Model model) {
+	public String seachHandler(@RequestParam("productName") String name, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			return "redirect:/CustomerLogin.html";
+		}
 
 		Product product = this.productServices.getProductByName(name);
 		if (product == null) {
@@ -87,7 +94,7 @@ public class AdminController {
 	}
 
 	@GetMapping("/admin/services")
-	public String returnBack(Model model) {
+	public String returnBack(Model model, HttpSession session) {
 		List<User> users = this.services.getAllUser();
 		List<Admin> admins = this.adminServices.getAll();
 		List<Product> products = this.productServices.getAllProducts();
@@ -158,7 +165,12 @@ public class AdminController {
 	}
 
 	@PostMapping("/product/order")
-	public String orderHandler(@ModelAttribute() Orders order, Model model) {
+	public String orderHandler(@ModelAttribute() Orders order, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			return "redirect:/CustomerLogin.html";
+		}
+
 		double totalAmount = Logic.countTotal(order.getoPrice(), order.getoQuantity());
 		order.setTotalAmmout(totalAmount);
 		order.setUser(user);
@@ -171,7 +183,11 @@ public class AdminController {
 	}
 
 	@GetMapping("/product/back")
-	public String back(Model model) {
+	public String back(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			return "redirect:/CustomerLogin.html";
+		}
 		List<Orders> orders = this.orderServices.getOrdersForUser(user);
 		model.addAttribute("orders", orders);
 		model.addAttribute("name", user.getUname());
@@ -180,7 +196,8 @@ public class AdminController {
 
 	// Direct order from Products page - order by product ID
 	@GetMapping("/order/{productId}")
-	public String orderProduct(@PathVariable("productId") int id, Model model) {
+	public String orderProduct(@PathVariable("productId") int id, Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
 		// Check if user is logged in
 		if (user == null) {
 			return "redirect:/CustomerLogin.html";
@@ -199,6 +216,20 @@ public class AdminController {
 		model.addAttribute("orders", orders);
 
 		return "BuyProduct";
+	}
+
+	// My Orders page - view order history
+	@GetMapping("/my-orders")
+	public String myOrders(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loggedInUser");
+		if (user == null) {
+			return "redirect:/CustomerLogin.html";
+		}
+
+		List<Orders> orders = this.orderServices.getOrdersForUser(user);
+		model.addAttribute("orders", orders);
+		model.addAttribute("name", user.getUname());
+		return "MyOrders";
 	}
 
 }

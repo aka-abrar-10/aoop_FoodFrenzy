@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodFrenzy - My Orders</title>
+    <link rel="icon" type="image/x-icon" href="./Images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/Navigation.css?v=1.0" th:href="@{/css/Navigation.css}" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .orders-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card.orders i {
+            color: #6366f1;
+        }
+
+        .stat-card.spent i {
+            color: #10b981;
+        }
+
+        .stat-card.items i {
+            color: #f59e0b;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .orders-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .orders-header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .orders-header i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .orders-header h2 {
+            margin-bottom: 0.25rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .orders-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .orders-table th i {
+            margin-right: 0.5rem;
+            color: #6366f1;
+        }
+
+        .orders-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .amount {
+            font-weight: 600;
+            color: #10b981;
+        }
+
+        .order-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .no-orders {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #6b7280;
+        }
+
+        .no-orders i {
+            font-size: 4rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .no-orders h3 {
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn-shop {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-shop:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(16, 185, 129, 0.5);
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: #6366f1;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <div class="page-header">
+        <h1><i class="fas fa-shopping-bag"></i> My Orders</h1>
+        <p>Track and view your order history</p>
+    </div>
+
+    <div class="container">
+        <!-- Stats Cards -->
+        <div class="orders-stats" th:if="${orders != null && !orders.isEmpty()}">
+            <div class="stat-card orders">
+                <i class="fas fa-receipt"></i>
+                <div class="stat-value" th:text="${#lists.size(orders)}">0</div>
+                <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-card spent">
+                <i class="fas fa-money-bill-wave"></i>
+                <div class="stat-value">৳<span th:text="${#aggregates.sum(orders.![totalAmmout])}">0</span></div>
+                <div class="stat-label">Total Spent</div>
+            </div>
+            <div class="stat-card items">
+                <i class="fas fa-utensils"></i>
+                <div class="stat-value" th:text="${#aggregates.sum(orders.![oQuantity])}">0</div>
+                <div class="stat-label">Items Ordered</div>
+            </div>
+        </div>
+
+        <!-- Orders Table -->
+        <div class="orders-card">
+            <div class="orders-header">
+                <i class="fas fa-history"></i>
+                <h2>Order History</h2>
+                <p>All your previous orders</p>
+            </div>
+
+            <!-- If orders exist -->
+            <div th:if="${orders != null && !orders.isEmpty()}" class="table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th><i class="fas fa-hashtag"></i> Order ID</th>
+                            <th><i class="fas fa-box"></i> Product</th>
+                            <th><i class="fas fa-tag"></i> Price</th>
+                            <th><i class="fas fa-sort-numeric-up"></i> Qty</th>
+                            <th><i class="fas fa-money-bill"></i> Total</th>
+                            <th><i class="fas fa-calendar"></i> Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="order : ${orders}">
+                            <td class="order-id">#<span th:text="${order.oId}">1</span></td>
+                            <td th:text="${order.oName}">Product Name</td>
+                            <td>৳<span th:text="${order.oPrice}">0</span></td>
+                            <td th:text="${order.oQuantity}">1</td>
+                            <td class="amount">৳<span th:text="${order.totalAmmout}">0</span></td>
+                            <td class="order-date" th:text="${#dates.format(order.orderDate, 'dd MMM yyyy, hh:mm a')}">
+                                01 Jan 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- If no orders -->
+            <div th:if="${orders == null || orders.isEmpty()}" class="no-orders">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>No orders yet</h3>
+                <p>You haven't placed any orders. Start shopping now!</p>
+                <a th:href="@{/products}" class="btn-shop">
+                    <i class="fas fa-store"></i> Browse Products
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 FoodFrenzy. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

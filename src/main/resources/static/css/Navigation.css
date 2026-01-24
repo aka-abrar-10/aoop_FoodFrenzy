@@ -96,6 +96,22 @@ nav ul li a i {
     font-size: 1.2rem;
 }
 
+/* My Orders button */
+.my-orders-btn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+    color: white !important;
+    border-radius: 0.5rem !important;
+}
+
+.my-orders-btn:hover {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed) !important;
+    transform: translateY(-2px);
+}
+
+.my-orders-btn i {
+    margin-right: 0.5rem;
+}
+
 .logout-btn {
     background: linear-gradient(135deg, #ef4444, #dc2626) !important;
     color: white !important;
