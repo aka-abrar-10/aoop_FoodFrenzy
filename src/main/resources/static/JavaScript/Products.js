@@ -27,14 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Buy button functionality
-    const buyButtons = document.querySelectorAll('.buy-btn');
-    buyButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-            event.preventDefault();
-            alert("Please Login as a User to buy Products");
-        });
-    });
+    // Buy button functionality - handled by server-side login check
+    // Server redirects to login if not authenticated
 
     // Favorite/Heart icon functionality
     const favoriteButtons = document.querySelectorAll('.add-to-cart');

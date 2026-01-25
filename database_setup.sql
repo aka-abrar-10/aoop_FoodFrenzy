@@ -109,30 +109,30 @@ INSERT INTO product_table (pname, pprice, pdescription, pimage, pcategory, prati
 ('Chicken Korma', 350.00, 'Mild creamy chicken curry', './Images/chicken/butter-chicken.jpg', 'chicken', 4.4),
 ('Chicken Roast', 550.00, 'Whole roasted chicken with spices', './Images/chicken/Afgani-chicken-curry.jpg', 'chicken', 4.8);
 
--- North Indian Items
+-- Bangladeshi Items
 INSERT INTO product_table (pname, pprice, pdescription, pimage, pcategory, prating) VALUES
-('Laccha Paratha', 30.00, 'Flaky layered Indian flatbread', './Images/north-india-food/Laccha-Paratha.jpg', 'north-indian', 4.5),
-('Chilli Potato', 150.00, 'Crispy potato in spicy sauce', './Images/north-india-food/Honey-Chilli-Potato.jpg', 'north-indian', 4.5),
-('Chola Bhatura', 180.00, 'Spicy chickpeas with fried bread', './Images/north-india-food/chola-bhatura.jpg', 'north-indian', 4.5),
-('Gulab Jamun', 50.00, 'Sweet milk dumplings in syrup', './Images/north-india-food/Gulab Jamun.jpg', 'north-indian', 4.0),
-('Naan', 25.00, 'Soft tandoor baked flatbread', './Images/north-india-food/Laccha-Paratha.jpg', 'north-indian', 4.3),
-('Butter Naan', 35.00, 'Butter topped soft naan bread', './Images/north-india-food/Laccha-Paratha.jpg', 'north-indian', 4.5),
-('Dal Makhani', 180.00, 'Creamy black lentils cooked overnight', './Images/north-india-food/chola-bhatura.jpg', 'north-indian', 4.7),
-('Aloo Paratha', 60.00, 'Potato stuffed Indian flatbread', './Images/north-india-food/Laccha-Paratha.jpg', 'north-indian', 4.4),
-('Raita', 40.00, 'Yogurt with cucumber and spices', './Images/north-india-food/chola-bhatura.jpg', 'north-indian', 4.2),
-('Rasmalai', 80.00, 'Sweet cheese patties in milk', './Images/north-india-food/Gulab Jamun.jpg', 'north-indian', 4.8);
+('Luchi', 15.00, 'Traditional fried puffed bread', '/Images/bangladeshi/luchi.png', 'bangladeshi', 4.5),
+('Porota', 20.00, 'Layered fried flatbread', '/Images/bangladeshi/porota.png', 'bangladeshi', 4.6),
+('Fuchka', 60.00, 'Crispy shells with tangy tamarind water', '/Images/bangladeshi/fuchka.png', 'bangladeshi', 4.8),
+('Chotpoti', 50.00, 'Spicy chickpea street snack', '/Images/bangladeshi/chotpoti.png', 'bangladeshi', 4.5),
+('Haleem', 180.00, 'Slow cooked meat and lentil stew', '/Images/bangladeshi/haleem.png', 'bangladeshi', 4.9),
+('Pitha', 80.00, 'Steamed rice cake with molasses', '/Images/bangladeshi/pitha.png', 'bangladeshi', 4.7),
+('Mishti Doi', 60.00, 'Sweet caramelized yogurt dessert', '/Images/bangladeshi/mishti_doi.png', 'bangladeshi', 4.8),
+('Roshogolla', 40.00, 'Soft cheese balls in sugar syrup', '/Images/bangladeshi/roshogolla.png', 'bangladeshi', 4.6),
+('Shingara', 25.00, 'Crispy potato filled samosa', '/Images/bangladeshi/shingara.png', 'bangladeshi', 4.4),
+('Jhalmuri', 30.00, 'Spicy puffed rice street snack', '/Images/bangladeshi/jhalmuri.png', 'bangladeshi', 4.5);
 
 -- Chinese Items
 INSERT INTO product_table (pname, pprice, pdescription, pimage, pcategory, prating) VALUES
-('Chowmein', 150.00, 'Stir-fried noodles with vegetables', './Images/chinese/chowmein.jpg', 'chinese', 4.5),
-('Chicken Chowmein', 200.00, 'Noodles with chicken and vegetables', './Images/chinese/chowmein.jpg', 'chinese', 4.6),
-('Fried Rice', 140.00, 'Classic vegetable fried rice', './Images/chinese/chowmein.jpg', 'chinese', 4.3),
-('Chicken Fried Rice', 180.00, 'Fried rice with chicken chunks', './Images/chinese/chowmein.jpg', 'chinese', 4.5),
-('Manchurian', 160.00, 'Crispy veg balls in tangy sauce', './Images/chinese/chowmein.jpg', 'chinese', 4.4),
-('Chicken Manchurian', 200.00, 'Chicken balls in manchurian sauce', './Images/chinese/chowmein.jpg', 'chinese', 4.6),
-('Spring Roll', 80.00, 'Crispy vegetable spring rolls', './Images/chinese/chowmein.jpg', 'chinese', 4.2),
-('Momos', 100.00, 'Steamed dumplings with filling', './Images/chinese/chowmein.jpg', 'chinese', 4.7),
-('Chicken Momos', 120.00, 'Steamed chicken dumplings', './Images/chinese/chowmein.jpg', 'chinese', 4.8);
+('Chowmein', 150.00, 'Stir-fried noodles with vegetables', '/Images/chinese/chowmein_veg.png', 'chinese', 4.5),
+('Chicken Chowmein', 200.00, 'Noodles with chicken and vegetables', '/Images/chinese/chowmein_chicken.png', 'chinese', 4.6),
+('Fried Rice', 140.00, 'Classic vegetable fried rice', '/Images/chinese/fried_rice_veg.png', 'chinese', 4.3),
+('Chicken Fried Rice', 180.00, 'Fried rice with chicken chunks', '/Images/chinese/fried_rice_chicken.png', 'chinese', 4.5),
+('Manchurian', 160.00, 'Crispy veg balls in tangy sauce', '/Images/chinese/manchurian_veg.png', 'chinese', 4.4),
+('Chicken Manchurian', 200.00, 'Chicken balls in manchurian sauce', '/Images/chinese/manchurian_chicken.png', 'chinese', 4.6),
+('Spring Roll', 80.00, 'Crispy vegetable spring rolls', '/Images/chinese/spring_roll.png', 'chinese', 4.2),
+('Momos', 100.00, 'Steamed dumplings with filling', '/Images/chinese/momo.webp', 'chinese', 4.7),
+('Chicken Momos', 120.00, 'Steamed chicken dumplings', '/Images/chinese/momo.webp', 'chinese', 4.8);
 
 -- =============================================
 -- Step 7: Insert Some Sample Orders
