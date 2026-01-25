@@ -1,273 +1,244 @@
-# 🍔 FoodFrenzy
+# 🍕 Food Delivery App
 
-FoodFrenzy is a comprehensive food ordering and management system designed for managing customers, inventory, and orders. It offers secure authentication, role-based access control, and database integration using MySQL. Built with Spring Boot and Thymeleaf, the application provides a seamless experience for both customers and admin users.
-
-![Screenshot 2024-10-02 123332](https://github.com/user-attachments/assets/1382d32f-3cbb-40c3-b6b5-9fc55cd5176f)
+A full-stack food delivery web application built with Spring Boot and Thymeleaf. This application provides a complete platform for ordering food online with separate interfaces for customers and administrators. Users can browse various food categories including Biryani, Chicken, Chinese, Bangladeshi, Paneer, and Vegetable dishes.
 
 ## ✨ Features
 
-- **Customer Management**: Easily add, update, and delete customer information
-- **Inventory Management**: Keep track of inventory items, including stock levels and pricing
-- **Order Management**: Manage customer orders with order creation, updates, and status tracking
-- **User Authentication**: Secure login and authentication for customers and admin members
-- **Role-Based Access Control**: Define roles and permissions for different user types
-- **Product Categories**: Support for various food categories (Bangladeshi, Chinese, Biryani, Chicken, Paneer, etc.)
-- **Responsive UI**: Modern and user-friendly interface built with Thymeleaf, HTML, CSS, and JavaScript
-- **Database Integration**: Integrated with MySQL for reliable data storage and retrieval
+### Customer Features
+
+- **User Registration & Login**: Secure authentication system for customers
+- **Browse Products**: View food items organized by categories
+- **Product Search**: Find your favorite dishes quickly
+- **Order Placement**: Easy-to-use ordering system
+- **Order Tracking**: Track order status in real-time
+- **About & Contact**: Learn about the service and locate restaurants
+
+### Admin Features
+
+- **Admin Dashboard**: Comprehensive admin control panel
+- **Product Management**: Add, update, and delete food products
+- **User Management**: Manage customer accounts
+- **Admin Management**: Manage other admin users
+- **Order Management**: View and process customer orders
+- **Inventory Control**: Track and manage product availability
+
+### Additional Features
+
+- **Responsive Design**: Mobile-friendly interface
+- **Secure Authentication**: Separate login systems for customers and admins
+- **Role-Based Access Control**: Different permissions for customers and administrators
+- **Database Integration**: MySQL database for persistent data storage
+- **Thymeleaf Templates**: Dynamic server-side rendering
 
 ## 🛠️ Technology Stack
 
-- **Backend**: Spring Boot 3.1.3, Java 17, Spring MVC, Spring Data JPA (Hibernate), Spring Security
+- **Backend**: Spring Boot 3.1.3, Java 17
 - **Frontend**: Thymeleaf, HTML5, CSS3, JavaScript
-- **Database**: MySQL 8.0+
+- **Database**: MySQL
+- **ORM**: Spring Data JPA (Hibernate)
 - **Build Tool**: Maven
-- **IDE**: Eclipse, IntelliJ IDEA, or Spring Tool Suite (STS)
+- **Development**: Spring Boot DevTools
 
 ## 📋 Prerequisites
 
-Before running this project, ensure you have the following installed on your system:
+Before running this project, ensure you have the following installed:
 
-| Software     | Version                                 | Download Link                                                   |
-| ------------ | --------------------------------------- | --------------------------------------------------------------- |
-| **Java JDK** | 17 or higher                            | [Download](https://adoptium.net/)                               |
-| **MySQL**    | 8.0 or higher                           | [Download](https://dev.mysql.com/downloads/mysql/) or use XAMPP |
-| **Maven**    | 3.6+ (optional - included with wrapper) | [Download](https://maven.apache.org/download.cgi)               |
-| **Git**      | Latest                                  | [Download](https://git-scm.com/downloads)                       |
+- **Java 17** or higher
+- **MySQL 8.0** or higher
+- **Maven 3.6+**
+- **IDE**: IntelliJ IDEA, Eclipse, or Spring Tool Suite (STS)
 
-## 🚀 Quick Start Guide
+## 🚀 Setup and Installation
 
-### Step 1: Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/aoop_FoodFrenzy.git
-cd aoop_FoodFrenzy
+git clone https://github.com/your-username/Food-Delivery-App.git
+cd Food-Delivery-App
 ```
 
-### Step 2: Setup MySQL Database
+### 2. Configure MySQL Database
 
-#### Option A: Using XAMPP (Recommended for Windows)
+Create a new MySQL database:
 
-1. Install and start **XAMPP**
-2. Start the **MySQL** service from XAMPP Control Panel
-3. Open **phpMyAdmin** at `http://localhost/phpmyadmin`
-4. Click on **SQL** tab
-5. Copy and paste the contents of `database_setup.sql` file
-6. Click **Go** to execute the SQL script
-
-#### Option B: Using MySQL Command Line
-
-```bash
-# Login to MySQL
-mysql -u root -p
-
-# Create the database
-CREATE DATABASE FoodFrenzy;
-
-# Use the database
-USE FoodFrenzy;
-
-# Import the database setup file
-source /path/to/database_setup.sql;
-
-# Exit MySQL
-exit;
+```sql
+CREATE DATABASE foodfrenzy;
 ```
 
-### Step 3: Configure Database Connection
-
-The default configuration in [src/main/resources/application.properties](src/main/resources/application.properties) is:
+Update the database configuration in [src/main/resources/application.properties](src/main/resources/application.properties):
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/FoodFrenzy?createDatabaseIfNotExist=true
-spring.datasource.username=root
-spring.datasource.password=
-```
-
-**If your MySQL has a password**, update the `application.properties` file:
-
-```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/foodfrenzy
+spring.datasource.username=your_mysql_username
 spring.datasource.password=your_mysql_password
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
 ```
 
-### Step 4: Run the Application
+### 3. Build and Run the project
 
-#### Using Maven Wrapper (No Maven installation needed):
-
-**On macOS/Linux:**
+Using Maven wrapper:
 
 ```bash
+./mvnw clean install
 ./mvnw spring-boot:run
 ```
 
-**On Windows:**
+Or using Maven directly:
 
 ```bash
-mvnw.cmd spring-boot:run
-```
-
-#### Using Maven (if installed):
-
-```bash
+mvn clean install
 mvn spring-boot:run
 ```
 
-#### Using IDE:
+Or using your IDE:
 
-1. Import the project as a Maven project
-2. Wait for dependencies to download
-3. Run the main application class (usually `DemoApplication.java`)
+- Import the project as a Maven project
+- Run `FoodFrenzyApplication.java` as a Spring Boot application
 
-### Step 5: Access the Application
+### 4. Access the application
 
-Open your web browser and navigate to:
-
-```
-http://localhost:8080
-```
-
-## 🔑 Default Login Credentials
-
-After setting up the database with `database_setup.sql`, you can use these default credentials:
-
-**Admin Login:**
-
-- Navigate to: `http://localhost:8080/adminlogin`
-- Check your database for admin credentials
-
-**Customer Login:**
-
-- Navigate to: `http://localhost:8080/customerlogin`
-- Or register a new customer account
+- **Customer Portal**: `http://localhost:8080`
+- **Admin Portal**: `http://localhost:8080/admin`
 
 ## 📁 Project Structure
 
 ```
-aoop_FoodFrenzy/
+Food-Delivery-App/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/example/demo/
-│   │   │   ├── controller/      # Controllers for handling HTTP requests
-│   │   │   ├── model/           # Entity classes (JPA entities)
-│   │   │   ├── repository/      # Data access layer (JPA repositories)
-│   │   │   ├── service/         # Business logic layer
-│   │   │   └── config/          # Security and app configuration
+│   │   │   ├── FoodFrenzyApplication.java  # Main application class
+│   │   │   ├── config/                      # Configuration classes
+│   │   │   ├── controllers/                 # MVC Controllers
+│   │   │   ├── entities/                    # JPA Entity classes
+│   │   │   │   ├── Admin.java              # Admin entity
+│   │   │   │   ├── User.java               # User/Customer entity
+│   │   │   │   ├── Product.java            # Product entity
+│   │   │   │   └── Orders.java             # Order entity
+│   │   │   ├── repositories/                # Spring Data JPA repositories
+│   │   │   ├── services/                    # Business logic layer
+│   │   │   ├── loginCredentials/            # Authentication logic
+│   │   │   ├── count/                       # Utility classes
+│   │   │   └── Exceptions.java              # Custom exceptions
 │   │   └── resources/
-│   │       ├── templates/       # Thymeleaf HTML templates
+│   │       ├── application.properties       # Application configuration
 │   │       ├── static/
-│   │       │   ├── css/        # Stylesheets
-│   │       │   ├── Images/     # Product images and assets
-│   │       │   └── JavaScript/ # Client-side scripts
-│   │       └── application.properties  # Application configuration
-│   └── test/                    # Unit and integration tests
-├── database_setup.sql           # Database schema and initial data
-├── pom.xml                      # Maven dependencies and build config
-├── mvnw & mvnw.cmd             # Maven wrapper scripts
-└── README.md                    # This file
+│   │       │   ├── css/                     # Stylesheets
+│   │       │   ├── JavaScript/              # Client-side scripts
+│   │       │   └── Images/                  # Product and logo images
+│   │       │       ├── biryani/
+│   │       │       ├── chicken/
+│   │       │       ├── chinese/
+│   │       │       ├── bangladeshi/
+│   │       │       ├── paneer/
+│   │       │       └── vegetable/
+│   │       └── templates/                   # Thymeleaf HTML templates
+│   │           ├── Home.html
+│   │           ├── Products.html
+│   │           ├── BuyProduct.html
+│   │           ├── CustomerLogin.html
+│   │           ├── AdminLogin.html
+│   │           ├── Admin_Page.html
+│   │           └── ...
+│   └── test/                                # Test classes
+├── pom.xml                                  # Maven configuration
+└── README.md
 ```
 
-## 🐛 Troubleshooting
+## 🎯 Key Entities
 
-### Port 8080 is already in use
+- **User**: Customer information and credentials
+- **Admin**: Administrator accounts with elevated permissions
+- **Product**: Food items with categories, prices, and images
+- **Orders**: Customer orders with product details and status
 
-```bash
-# Find and kill the process using port 8080
-# On macOS/Linux:
-lsof -ti:8080 | xargs kill -9
+## 🔐 Security Features
 
-# On Windows:
-netstat -ano | findstr :8080
-taskkill /PID <PID> /F
-```
+- Secure password handling
+- Session management
+- Role-based access control (Customer/Admin)
+- Protected admin routes
 
-### MySQL Connection Error
+## 📱 Application Pages
 
-- Verify MySQL is running
-- Check username and password in `application.properties`
-- Ensure the database `FoodFrenzy` exists
-- Check MySQL is running on port 3306
+### Customer Pages
 
-### Maven Dependencies Not Downloading
+- **Home**: Landing page with featured items
+- **Products**: Browse all food products by category
+- **Buy Product**: Product details and purchase page
+- **Customer Login**: Authentication for customers
+- **Register**: New user registration
+- **About**: Information about the service
+- **Locate Us**: Restaurant locations and contact
 
-```bash
-# Clean and install
-./mvnw clean install
+### Admin Pages
 
-# Or force update
-./mvnw clean install -U
-```
+- **Admin Dashboard**: Overview and management panel
+- **Product Management**: Add, update, delete products
+- **User Management**: Add, update, delete customers
+- **Admin Management**: Manage administrator accounts
+- **Order Management**: View and process orders
+- **Admin Login**: Secure admin authentication
 
-## 📝 Additional SQL Scripts
+## 🖼️ Screenshots
 
-The project includes additional SQL scripts for populating product data:
+> **Note**: Add your own application screenshots here to showcase your Food Delivery App interface.
 
-- `update_bangladeshi_products.sql` - Bangladeshi cuisine products
-- `update_chinese_products.sql` - Chinese cuisine products
+Recommended screenshots to include:
 
-Run these after the main database setup if needed.
+- Home page with featured dishes
+- Products catalog page
+- Product details and ordering page
+- Customer login/registration
+- Admin dashboard
+- Product management interface
+- Order management view
+
+## 🎨 Food Categories
+
+The application features various food categories with high-quality images:
+
+- **Biryani** - Aromatic rice dishes
+- **Chicken** - Various chicken preparations
+- **Chinese** - Popular Chinese cuisine
+- **Bangladeshi** - Traditional Bangladeshi cuisine
+- **Paneer** - Cottage cheese specialties
+- **Vegetable** - Healthy vegetarian options
+
+## 🚧 Future Enhancements
+
+- Payment gateway integration
+- Real-time order tracking
+- Customer ratings and reviews
+- Mobile application
+- Email notifications
+- Discount and coupon system
+- Multi-restaurant support
+- Advanced search and filters
 
 ## 🤝 Contributing
 
-1. Fork the repository
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
 2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📄 License
+## 📝 License
 
-This project is open source and available for educational purposes.
+This project is open source and available under the [MIT License](LICENSE).
 
-## 📞 Support
+## 📧 Contact
 
-For detailed setup instructions in Bengali, see [SETUP_GUIDE.md](SETUP_GUIDE.md)
+For any questions or suggestions, feel free to reach out or create an issue in the repository.
 
-For project documentation, see [DOCUMENTATION.md](DOCUMENTATION.md)
+## ⭐ Show your support
+
+Give a ⭐️ if you like this project!
 
 ---
 
-**Happy Coding! 🎉**
-
-## Website Screenshot
-
-Here is a preview of the FoodFrenzy interface:
-
-![Screenshot 2025-05-19 143351](https://github.com/user-attachments/assets/3e34f54c-c986-42ac-96a4-ed7ad18035a6)
-![Screenshot 2025-05-19 143427](https://github.com/user-attachments/assets/a4046d4e-8c3d-4629-8913-5543d709e80e)
-![Screenshot 2025-05-19 143441](https://github.com/user-attachments/assets/09c92348-ec06-4607-9ae4-88b28cc1e0ec)
-![Screenshot 2025-05-19 143452](https://github.com/user-attachments/assets/0e73aece-a28c-413d-9363-245358a0e439)
-![Screenshot 2025-05-19 143504](https://github.com/user-attachments/assets/ac26bd92-0fcd-473d-a175-9bc45fdb12ba)
-
-![image](https://github.com/user-attachments/assets/3d407958-efbe-449f-b4e1-5b08b9f8a28b)
-
-![Screenshot 2024-08-24 194958](https://github.com/user-attachments/assets/c11a4710-69f8-42fd-b9d7-2b5278b2c8a3)
-
-![Screenshot 2024-08-24 220831](https://github.com/user-attachments/assets/d3cd3cdd-cda5-460a-a253-24e45cf600b0)  
-![Screenshot 2024-08-24 195054](https://github.com/user-attachments/assets/733afb94-a251-4a6d-86a4-3a124e8c3469)
-![Screenshot 2024-08-24 195106](https://github.com/user-attachments/assets/ef09886f-7936-4ef7-b01e-4da0008fd047)
-![Screenshot 2024-08-24 195121](https://github.com/user-attachments/assets/219272b8-3938-4b7f-ba78-817e507beee9)
-![Screenshot 2024-10-03 093051](https://github.com/user-attachments/assets/d4da51a4-dfe8-4cc1-ae49-745f6e1ae17a)
-![Screenshot 2024-10-03 093106](https://github.com/user-attachments/assets/09c31cf7-e960-4ea5-a858-8807317486b7)
-![Screenshot 2024-10-03 093133](https://github.com/user-attachments/assets/b1da1faa-7e71-49be-972a-432029a1e7c3)
-![Screenshot 2024-10-03 093424](https://github.com/user-attachments/assets/b0a9a1e2-6018-475a-95fc-d64980677ee7)
-![Screenshot 2024-10-03 093437](https://github.com/user-attachments/assets/b860f905-2c35-4af3-9df8-38cda70b4406)
-
-## Project Structure
-
-```bash
-src/
-├── main/
-│   ├── java/
-│   │   └── com.example.foodfrenzy/
-│   │       ├── controller/      # Contains all controllers
-│   │       ├── model/           # Contains entity classes
-│   │       ├── repository/      # Repository interfaces for database interaction
-│   │       └── service/         # Service layer with business logic
-│   ├── resources/
-│   │   ├── templates/           # Thymeleaf templates for views
-│   │   ├── static/              # Static assets (CSS, JavaScript)
-│   │   └── application.properties  # Project configuration
-│   └── webapp/
-│       └── WEB-INF/
-│           └── views/           # Additional view files
-└── test/                        # Test cases for unit testing
-```
+**Built with ❤️ using Spring Boot and Thymeleaf**
