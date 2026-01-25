@@ -181,11 +181,7 @@ Food-Delivery-App/
 - **Order Management**: View and process orders
 - **Admin Login**: Secure admin authentication
 
-## 🖼️ Screenshots
 
-> **Note**: Add your own application screenshots here to showcase your Food Delivery App interface.
-
-Recommended screenshots to include:
 
 - Home page with featured dishes
 - Products catalog page
